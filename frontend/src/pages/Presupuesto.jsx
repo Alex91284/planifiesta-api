@@ -36,7 +36,7 @@ export default function Presupuesto() {
   }
 
   return (
-    <div>
+    <div className="container">
       <h2>📊 Ver Presupuesto Acumulado</h2>
 
       <form onSubmit={manejarSubmit} style={{ marginBottom: '2rem' }}>

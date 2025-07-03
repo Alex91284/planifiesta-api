@@ -5,11 +5,11 @@ import Usuarios from './pages/Usuarios'
 import Invitaciones from './pages/Invitaciones'
 import Aportes from './pages/Aportes'
 import Presupuesto from './pages/Presupuesto'
-
+import './App.css' 
 export default function App() {
   return (
     <BrowserRouter>
-      <header style={{ padding: '1rem', background: '#eee' }}>
+      <header style={{ margin:'auto', padding: '1rem', background: '#eee' }}>
         <h1 style={{color:'#323332'}}>Planifiesta 🎉</h1>
         <nav style={{ display: 'flex', gap: '1rem' }}>
           <Link to="/">Inicio</Link>

@@ -69,7 +69,7 @@ export default function Invitaciones() {
   }
 
   return (
-    <div>
+    <div className="container">
       <h2>✉️ Crear invitación</h2>
       <form onSubmit={manejarSubmit} style={{ marginBottom: '2rem' }}>
         <select
