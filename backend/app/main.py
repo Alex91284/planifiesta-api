@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.api.events import router as eventos_router
 from app.api.users import router as users_router
 from app.api.invitaciones import router as invitaciones_router
@@ -8,6 +9,14 @@ app = FastAPI(
     title="Planifiesta API",
     version="1.0.0",
     description="API para gestionar fiestas y optomizar los presupuestos",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(eventos_router, prefix="/api")
