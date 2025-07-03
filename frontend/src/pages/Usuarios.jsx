@@ -23,7 +23,7 @@ export default function Usuarios() {
   async function manejarSubmit(e) {
     e.preventDefault()
     try {
-      await crearUsuario({ nombre, correo })
+      await crearUsuario({ nombre, email: correo, tipo_usuario: tipo })
       setNombre('')
       setCorreo('')
       setTipo('invitado')
@@ -60,7 +60,7 @@ export default function Usuarios() {
       <ul>
         {usuarios.map((u) => (
           <li key={u.id}>
-            #{u.id} - {u.nombre} ({u.correo})
+            #{u.id} - {u.nombre} ({u.email}) - {u.tipo_usuario}            
           </li>
         ))}
       </ul>

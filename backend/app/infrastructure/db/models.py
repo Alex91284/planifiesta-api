@@ -45,8 +45,10 @@ class Aporte(Base):
     __tablename__ = "aportes"
 
     id = Column(Integer, primary_key=True, index=True)
-    evento_id = Column(Integer, ForeignKey("eventos.id"))
-    monto = Column(Float, nullable=False)
+    usuario_id = Column(Integer, ForeignKey("usuarios.id"), nullable=False)
+    evento_id = Column(Integer, ForeignKey("eventos.id"), nullable=False)
     dia = Column(Integer, nullable=False)
+    monto = Column(Integer, nullable=False)
 
+    usuario = relationship("Usuario", backref="aportes")
     evento = relationship("Evento", backref="aportes")

@@ -1,5 +1,7 @@
 from enum import Enum
 from pydantic import BaseModel, EmailStr
+from typing import Optional
+
 
 class UsuarioCreate(BaseModel):
     nombre: str
@@ -35,7 +37,7 @@ class EventoOut(BaseModel):
     id: int
     nombre: str
     descripcion: str | None = None
-    anfitrion: UsuarioEventoOut  # muestra información del anfitrión
+    anfitrion_id: int  # muestra información del anfitrión
 
     class Config:
         from_attributes = True
@@ -62,15 +64,17 @@ class InvitacionOut(BaseModel):
         from_attributes = True
 
 class AporteCreate(BaseModel):
+    usuario_id: int
     evento_id: int
-    monto: float
     dia: int  # Día del mes
+    monto: int
 
 class AporteOut(BaseModel):
     id: int
+    usuario_id: int
     evento_id: int
-    monto: float
     dia: int
+    monto: int
 
     class Config:
-        from_attributes = True
+        from_attributes  = True

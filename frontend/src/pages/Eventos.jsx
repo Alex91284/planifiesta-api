@@ -1,24 +1,33 @@
 import { useEffect, useState } from 'react'
-import { obtenerEventos, crearEvento } from '../api/api'
+import { obtenerEventos, crearEvento, obtenerUsuarios } from '../api/api'
 
 export default function Eventos() {
   const [eventos, setEventos] = useState([])
   const [nombre, setNombre] = useState('')
   const [descripcion, setDescripcion] = useState('')
+  const [anfitriones, setAnfitriones] = useState([])
   const [anfitrionId, setAnfitrionId] = useState('')
 
   useEffect(() => {
-    cargarEventos()
-  }, [])
+    async function cargarDatos() {
+      try {
+        const usuarios = await obtenerUsuarios()
+        const anfitrionesFiltrados = usuarios.filter((u) => u.tipo_usuario === 'anfitrion')
+        setAnfitriones(anfitrionesFiltrados)
 
-  async function cargarEventos() {
-    try {
-      const data = await obtenerEventos()
-      setEventos(data)
-    } catch (err) {
-      console.error(err)
+        if (anfitrionesFiltrados.length > 0) {
+          setAnfitrionId(anfitrionesFiltrados[0].id)
+        }
+
+        const eventos = await obtenerEventos()
+        setEventos(eventos)
+      } catch (error) {
+        console.error('Error cargando datos:', error)
+      }
     }
-  }
+
+    cargarDatos()
+  }, [])
 
   async function manejarSubmit(e) {
     e.preventDefault()
@@ -26,10 +35,10 @@ export default function Eventos() {
       await crearEvento({ nombre, descripcion, anfitrion_id: parseInt(anfitrionId) })
       setNombre('')
       setDescripcion('')
-      setAnfitrionId('')
-      cargarEventos()
-    } catch (err) {
-      console.error(err)
+      const eventosActualizados = await obtenerEventos()
+      setEventos(eventosActualizados)
+    } catch (error) {
+      console.error(error)
     }
   }
 
@@ -49,22 +58,34 @@ export default function Eventos() {
           value={descripcion}
           onChange={(e) => setDescripcion(e.target.value)}
         />
-        <input
-          type="number"
-          placeholder="ID Anfitrión"
-          value={anfitrionId}
-          onChange={(e) => setAnfitrionId(e.target.value)}
-        />
+        <select value={anfitrionId} onChange={(e) => setAnfitrionId(e.target.value)}>
+          {anfitriones.map((anfitrion) => (
+            <option key={anfitrion.id} value={anfitrion.id}>
+              {anfitrion.nombre}
+            </option>
+          ))}
+        </select>
         <button type="submit">Crear</button>
       </form>
 
       <h3>📋 Lista de eventos</h3>
       <ul>
-        {eventos.map((ev) => (
-          <li key={ev.id}>
-            <strong>{ev.nombre}</strong>: {ev.descripcion}
-          </li>
-        ))}
+        {eventos.map((ev) => {
+          const anfitrion = anfitriones.find((a) => Number(a.id) === Number(ev.anfitrion_id))
+         
+          return (
+            <li key={ev.id}>
+              <strong>{ev.nombre}</strong>: {ev.descripcion}{' '}
+              {anfitrion ? (
+                <span style={{ marginLeft: '0.5rem' }}>
+                  👤 Anfitrión: <strong>{anfitrion.nombre}</strong>
+                </span>
+              ) : (
+                <span style={{ color: 'red' }}>💔 Anfitrión no encontrado</span>
+              )}
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
