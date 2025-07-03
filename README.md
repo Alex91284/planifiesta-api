@@ -16,7 +16,14 @@
 
 ##  Tecnologías utilizadas en el Frondend
 
-
+-**React** - Libreria de javascript para construir las interfaces de usuario.
+-**Vite** - Herramienta de desarrollo rápido que reemplaza a Create React App.
+-**React Router** - Herramienta para la navegación entre vistas sin recargar la página.
+-**Fetch API** - Para las peticiones HTTP hacia la API backend de FastAPI.
+-**CSS Personalizado** - Estilos definidos a mano para un diseño limpio y centrado.
+-**JSX** -Estilos definidos a mano para un diseño limpio y centrado.
+-**Hooks (useState, useEffect)** - Para manejar estado y efectos secundarios en componentes.
+-**Modularización** - Componentes divididos por responsabilidad: Eventos, Usuarios, Aportes.
 
 ---
 
@@ -43,6 +50,11 @@ planifiesta/
 |        |----- README.md
 |
 |----- frontend/
+        |----- api/
+        |----- pages/
+        |----- App.jsx
+        |----- App.css
+        |----- main.jsx
 
 ## Instalación y ejecución local
 
