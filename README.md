@@ -4,7 +4,7 @@
 
 ---
 
-##  Tecnologías utilizadas
+##  Tecnologías utilizadas en el Backend
 
 - **FastAPI** – Framework web asincrónico
 - **SQLAlchemy** – ORM para modelos de base de datos
@@ -14,28 +14,35 @@
 - **Uvicorn** – Servidor ASGI
 - **Dotenv** – Variables de entorno
 
+##  Tecnologías utilizadas en el Frondend
+
+
+
 ---
 
 ##  Estructura del proyecto
 
 planifiesta/
 |
-|----- app/
-|         |----- api/
-|         |----- core/
-|         |-----  infrastructure/
-|         |         |----- db/
-|         |----- use_cases/
-|         |----- main/
+|------ backend/
+|        |----- app/
+|        |         |----- api/
+|        |         |----- core/
+|        |         |-----  infrastructure/
+|        |         |         |----- db/
+|        |         |----- use_cases/
+|        |         |----- main/
+|        |
+|        |----- create_tables.py
+|        |----- entrypoint.sh
+|        |----- Dockerfile
+|        |----- docker-compose.yml
+|        |----- .env
+|        |----- .env.exaple
+|        |----- requirements.txt
+|        |----- README.md
 |
-|----- create_tables.py
-|----- entrypoint.sh
-|----- Dockerfile
-|----- docker-compose.yml
-|----- .env
-|----- .env.exaple
-|----- requirements.txt
-|----- README.md
+|----- frontend/
 
 ## Instalación y ejecución local
 
