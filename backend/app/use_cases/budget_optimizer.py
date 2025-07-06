@@ -15,16 +15,16 @@ def calcular_presupuesto(dia, aportes, presupuesto_inicial=PRESUPUESTO_INICIAL):
     if dia < 1 or dia > 60:
         raise ValueError("El día debe estar entre 1 y 60")
 
-    # Determinar el costo diario según el rango del día
-    if 1 <= dia <= 20:
-        costo_dia = COSTO_CATERING_RANGO_1 + COSTO_DECORACION_RANGO_1
-    elif 21 <= dia <= 40:
-        costo_dia = COSTO_CATERING_RANGO_2 + COSTO_DECORACION_RANGO_2
-    else:  # 41 a 60
-        costo_dia = COSTO_CATERING_RANGO_3 + COSTO_DECORACION_RANGO_3
+    # Tramos
+    d1 = min(dia, 20)
+    d2 = min(max(dia - 20, 0), 20)
+    d3 = max(dia - 40, 0)
 
-    # Costo acumulado hasta ese día
-    costo_total = dia * costo_dia
+    costo_total = (
+        d1 * (COSTO_CATERING_RANGO_1 + COSTO_DECORACION_RANGO_1) +
+        d2 * (COSTO_CATERING_RANGO_2 + COSTO_DECORACION_RANGO_2) +
+        d3 * (COSTO_CATERING_RANGO_3 + COSTO_DECORACION_RANGO_3)
+    )
 
     # Sumar aportes realizados hasta ese día
     aportes_filtrados = [a for a in aportes if a["dia"] <= dia]

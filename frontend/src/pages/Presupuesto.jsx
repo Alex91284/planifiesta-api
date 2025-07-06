@@ -28,7 +28,7 @@ export default function Presupuesto() {
     setError('')
     try {
       const resultado = await obtenerPresupuesto(eventoId, dia)
-      setPresupuesto(resultado.total)
+      setPresupuesto(resultado)
     } catch (err) {
       console.error('Error al obtener presupuesto:', err)
       setError('No se pudo obtener el presupuesto')
@@ -59,10 +59,60 @@ export default function Presupuesto() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       {presupuesto !== null && (
+      <div>
         <p>
-          💰 Total aportado hasta el día {dia}: <strong>${presupuesto.toLocaleString()} COP</strong>
+          💰 Presupuesto restante al día {presupuesto.dia}:{' '}
+          <strong>
+            {presupuesto.presupuesto_restante.toLocaleString("es-CO", {
+              style: "currency",
+              currency: "COP",
+            })}
+          </strong>
         </p>
+        <p>
+          📉 Costo total acumulado:{" "}
+          <strong>
+            {presupuesto.costo_total.toLocaleString("es-CO", {
+              style: "currency",
+              currency: "COP",
+            })}
+          </strong>
+        </p>
+        <p>
+          🧾 Total aportado:{" "}
+          <strong>
+            {presupuesto.aportes.reduce((acc, a) => acc + a.monto, 0).toLocaleString("es-CO", {
+              style: "currency",
+              currency: "COP",
+            })}
+          </strong>
+        </p>
+
+        {presupuesto.aportes.length > 0 && (
+          <table>
+            <thead>
+              <tr>
+                <th>Día</th>
+                <th>Monto</th>
+              </tr>
+            </thead>
+            <tbody>
+              {presupuesto.aportes.map((a, index) => (
+                <tr key={index}>
+                  <td>{a.dia}</td>
+                  <td>
+                    {a.monto.toLocaleString("es-CO", {
+                      style: "currency",
+                      currency: "COP",
+                    })}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
       )}
-    </div>
+      </div>
+      )}
+  </div>
   )
 }
