@@ -22,6 +22,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def read_root():
+    return {"message": "Bienvenido a la API de Planifiesta 🚀"}
+
 app.include_router(eventos_router, prefix="/api")
 app.include_router(users_router, prefix="/api")
 app.include_router(invitaciones_router, prefix="/api")

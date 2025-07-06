@@ -13,6 +13,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - planifiesta_network
 
   app:
     build: .
@@ -25,6 +27,12 @@ services:
       - .env
     volumes:
       - .:/app
+    networks:
+      - planifiesta_network
 
 volumes:
   postgres_data:
+
+networks:
+  planifiesta_network:
+    driver: bridge
