@@ -39,7 +39,7 @@ export default function Presupuesto() {
     <div className="container">
       <h2>📊 Ver Presupuesto Acumulado</h2>
 
-      <form onSubmit={manejarSubmit} style={{ marginBottom: '2rem' }}>
+      <form onSubmit={manejarSubmit} >
         <select value={eventoId} onChange={(e) => setEventoId(e.target.value)}>
           {eventos.map((ev) => (
             <option key={ev.id} value={ev.id}>{ev.nombre}</option>
@@ -60,7 +60,7 @@ export default function Presupuesto() {
 
       {presupuesto !== null && (
       <div>
-        <p>
+        <p className='presupuesto-info'>
           💰 Presupuesto restante al día {presupuesto.dia}:{' '}
           <strong>
             {presupuesto.presupuesto_restante.toLocaleString("es-CO", {
@@ -69,7 +69,7 @@ export default function Presupuesto() {
             })}
           </strong>
         </p>
-        <p>
+        <p className='presupuesto-info'>
           📉 Costo total acumulado:{" "}
           <strong>
             {presupuesto.costo_total.toLocaleString("es-CO", {
@@ -78,7 +78,7 @@ export default function Presupuesto() {
             })}
           </strong>
         </p>
-        <p>
+        <p className='presupuesto-info'>
           🧾 Total aportado:{" "}
           <strong>
             {presupuesto.aportes.reduce((acc, a) => acc + a.monto, 0).toLocaleString("es-CO", {

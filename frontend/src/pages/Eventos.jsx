@@ -45,7 +45,7 @@ export default function Eventos() {
   return (
     <div className="container">
       <h2>📅 Crear nuevo evento</h2>
-      <form onSubmit={manejarSubmit} style={{ marginBottom: '2rem' }}>
+      <form onSubmit={manejarSubmit}>
         <input
           type="text"
           placeholder="Nombre"
@@ -83,7 +83,7 @@ export default function Eventos() {
               ) : (
                 <span style={{ color: 'red' }}>💔 Anfitrión no encontrado</span>
               )}
-            </li>
+            </li>                  
           )
         })}
       </ul>

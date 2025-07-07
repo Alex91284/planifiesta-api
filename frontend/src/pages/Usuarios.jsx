@@ -36,7 +36,7 @@ export default function Usuarios() {
   return (
     <div className="container">
       <h2>👤 Crear Usuario</h2>
-      <form onSubmit={manejarSubmit} style={{ marginBottom: '2rem' }}>
+      <form onSubmit={manejarSubmit}>
         <input
           type="text"
           placeholder="Nombre"

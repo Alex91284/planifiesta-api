@@ -14,8 +14,9 @@
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
+  font-weight: 700;
+  margin: auto;
+  color: #3b3b3f;
   text-decoration: inherit;
 }
 a:hover {

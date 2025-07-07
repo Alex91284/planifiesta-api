@@ -65,7 +65,7 @@ export default function Aportes() {
   return (
     <div className="container">
       <h2>💰 Registrar Aporte</h2>
-      <form onSubmit={manejarSubmit} style={{ marginBottom: '2rem' }}>
+      <form onSubmit={manejarSubmit}>
         <select value={usuarioId} onChange={(e) => setUsuarioId(e.target.value)}>
           <option value="">Seleccionar usuario</option>
           {usuarios.map((u) => (
