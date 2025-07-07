@@ -5,13 +5,18 @@ import Usuarios from './pages/Usuarios'
 import Invitaciones from './pages/Invitaciones'
 import Aportes from './pages/Aportes'
 import Presupuesto from './pages/Presupuesto'
+import logo from './assets/logo1.jpg' 
 import './App.css' 
 export default function App() {
   return (
     <BrowserRouter>
-      <header style={{ margin:'auto', padding: '1rem', background: '#eee' }}>
-        <h1 style={{color:'#323332'}}>Planifiesta 🎉</h1>
-        <nav style={{ display: 'flex', gap: '1rem' }}>
+      
+      <header >
+        <div className="content-title">
+          <img src={logo} alt="Planifiesta Logo" style={{ width: '25%' }} />
+          <h1 className='header-title'>Planifiesta 🎉</h1>
+        </div>
+        <nav>
           <Link to="/">Inicio</Link>
           <Link to="/eventos">Eventos</Link>
           <Link to="/usuarios">Usuarios</Link>
@@ -21,7 +26,7 @@ export default function App() {
         </nav>
       </header>
 
-      <main style={{ padding: '1rem' }}>
+      <main >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/eventos" element={<Eventos />} />

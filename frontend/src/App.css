@@ -4,10 +4,33 @@
   padding: 2rem;
   text-align: center;
 }
+header {
+  background-color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+.header-title {
+  color: #323332;
+}
+.content-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
 a {
   color: #4a4752;
   text-decoration: none;
   font-size: 1.2em;
+}
+main {
+  padding: 1rem;
 }
 .container {
   max-width: 800px;
