@@ -5,7 +5,7 @@ import Usuarios from './pages/Usuarios'
 import Invitaciones from './pages/Invitaciones'
 import Aportes from './pages/Aportes'
 import Presupuesto from './pages/Presupuesto'
-import logo from './assets/logo1.jpg' 
+import logo from './assets/logo1.png' 
 import './App.css' 
 export default function App() {
   return (
